@@ -59,6 +59,30 @@ def is_installed():
     return all(os.path.exists(p) for p in need) and os.path.exists(os.path.join(STORE, 'install.json'))
 
 
+def sc_patch_present():
+    """The acies Simplified patch is installed (or already backed up by this tool)."""
+    if os.path.exists(os.path.join(STORE, 'SC_backup', 'patch.xp3')):
+        return True
+    return all(os.path.exists(p) for p in ('patch.xp3', 'FontHook.ini', 'winmm.dll'))
+
+
+def current_language():
+    return 'cht' if ini_get(ini_read('FontHook.ini')[1], 'FontNameW') == FAMILY else 'chs'
+
+
+def switch_language(lang):
+    """Same as the 切換/切换 .bat files: copy that language's files into the game."""
+    src = os.path.join(STORE, 'CHT' if lang == 'cht' else 'SC_backup')
+    font = 'GameFont.ttf' if lang == 'cht' else next(
+        n for n in ('GameFont.otf', 'GameFont.ttf') if os.path.exists(os.path.join(src, n)))
+    wr('patch.xp3', rd(os.path.join(src, 'patch.xp3')))
+    for n in ('GameFont.otf', 'GameFont.ttf'):
+        if os.path.exists(n):
+            os.remove(n)
+    wr(font, rd(os.path.join(src, font)))
+    wr('FontHook.ini', rd(os.path.join(src, 'FontHook.ini')))
+
+
 def install(size, version):
     if not os.path.exists(EXE):
         raise RuntimeError('This is not a D.C.4 Sweet Harmony folder (DC4_SH.exe missing).')

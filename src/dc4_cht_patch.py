@@ -5,8 +5,12 @@ on the exe, or one you pick in a dialog), converts the installed Simplified Chin
 patch by acies to Traditional Chinese, applies the text fixes and sets the text size.
 Run it again any time to change the text size.
 
-Command line (optional):  DC4_CHT_Patch.exe [game folder] [--size N] [--reinstall]
+This is the command-line version; the exe opens the launcher window (launcher.py).
+
+  python dc4_cht_patch.py [game folder] [--sc-patch ZIP_OR_FOLDER] [--size N] [--reinstall]
                           [--sharp | --no-sharp] [--yes] [--no-pause]
+
+  --sc-patch  install the Simplified Chinese patch by acies from its download first
 """
 import os
 import sys
@@ -14,7 +18,7 @@ import traceback
 
 from common import say, ask, DEFAULT_SIZE, SIZE_MIN, SIZE_MAX, display_scale, set_sharp_window, sharp_window_is_on
 
-VERSION = '3.0'
+VERSION = '3.1'
 GAMES = (('DC4PHDL.exe', 'D.C.4 Plus Harmony'), ('DC4_SH.exe', 'D.C.4 Sweet Harmony'))
 
 
@@ -54,7 +58,8 @@ def pick_folder():
 
 
 def find_game():
-    args = [a for a in sys.argv[1:] if not a.startswith('--')]
+    vals = {arg_value(o) for o in ('--size', '--sc-patch')}
+    args = [a for a in sys.argv[1:] if not a.startswith('--') and a not in vals]
     if args and os.path.isdir(args[0]):
         return os.path.abspath(args[0])
     here = os.path.dirname(os.path.abspath(sys.executable if getattr(sys, 'frozen', False) else __file__))
@@ -119,6 +124,8 @@ def main():
     say('D.C.4 Traditional Chinese Patch v%s  /  D.C.4 繁體中文補丁' % VERSION)
     say('Plus Harmony + Sweet Harmony\n')
 
+    sc_arg = arg_value('--sc-patch')
+    sc_arg = os.path.abspath(sc_arg) if sc_arg else None     # before we chdir into the game folder
     game = find_game()
     if not game:
         raise RuntimeError('No game folder selected. / 未選擇遊戲資料夾。')
@@ -143,6 +150,23 @@ def main():
         cur = None
         say('Close the game before continuing. / 請先關閉遊戲。')
 
+    sc_src = None
+    if sc_arg:
+        import acies
+        try:
+            sc_src = acies.inspect(sc_arg)
+        except acies.NeedsExtract:
+            raise RuntimeError('Extract this archive first, then pass the extracted folder:\n%s' % sc_arg)
+        except (acies.NotAPatch, OSError):
+            raise RuntimeError("This doesn't look like the Simplified Chinese patch by acies:\n%s" % sc_arg)
+        if sc_src['kind'] != acies.KIND_OF_EXE[exe]:
+            raise RuntimeError('That is the %s patch, not %s.' % (acies.GAME_NAME[sc_src['kind']], name))
+        installed = False
+    elif not installed and not part.sc_patch_present():
+        import acies
+        raise RuntimeError('The Simplified Chinese patch by acies is not installed.\n'
+                           'Download it from %s and pass it with --sc-patch.' % acies.PAGES[acies.KIND_OF_EXE[exe]])
+
     size = ask_size(cur)
     say('')
     try:
@@ -150,6 +174,8 @@ def main():
             part.set_size(size)
             say('Text size set to %d. / 文字大小已設為 %d。' % (size, size))
         else:
+            if sc_src:
+                acies.install(sc_src, part.STORE)
             part.install(size, VERSION)
             say('      text size: %d' % size)
     except PermissionError as ex:

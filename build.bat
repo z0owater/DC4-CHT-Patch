@@ -1,4 +1,5 @@
 @echo off
-rem Builds dist\DC4_CHT_Patch.exe (needs: pip install -r requirements.txt pyinstaller)
+rem Builds dist\DC4_CHT_Patch.exe (the launcher window).
+rem Needs: pip install -r requirements.txt pyinstaller
 cd /d "%~dp0"
-python -m PyInstaller --onefile --console --clean --noconfirm --name DC4_CHT_Patch --collect-data opencc --paths src src\dc4_cht_patch.py
+python -m PyInstaller --onefile --windowed --clean --noconfirm --name DC4_CHT_Patch --icon assets\icon.ico --add-data "assets\icon.png;assets" --collect-data opencc --paths src src\launcher.py

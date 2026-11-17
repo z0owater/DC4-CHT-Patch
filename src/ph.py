@@ -264,6 +264,31 @@ def is_installed():
     return all(os.path.exists(p) for p in need) and b'.patch\x00\x00' in rd(EXE)[:4096]
 
 
+def sc_patch_present():
+    """The acies Simplified patch is installed (or already backed up by this tool)."""
+    if os.path.exists(os.path.join(STORE, 'SC_backup', '_work', 'carrier_map.json')):
+        return True
+    return all(os.path.exists(p) for p in ('winmm.dll', 'FontHook.ini', 'DC4CN.ttf', os.path.join('_work', 'carrier_map.json')))
+
+
+def current_language():
+    return 'cht' if ini_get(ini_read('FontHook.ini')[1], 'FontNameW') == FONT_FAMILY else 'chs'
+
+
+def switch_language(lang):
+    """Same as the 切換/切换 .bat files: copy that language's files into the game."""
+    src = os.path.join(STORE, 'CHT' if lang == 'cht' else 'SC_backup')
+    mes_src = os.path.join(src, 'Advdata', 'MES')
+    for fn in os.listdir(mes_src):
+        wr(os.path.join('Advdata', 'MES', fn), rd(os.path.join(mes_src, fn)))
+    for p in ('DC4CN.ttf', 'FontHook.ini', os.path.join('_work', 'carrier_map.json')):
+        wr(p, rd(os.path.join(src, p)))
+    grp = os.path.join('Advdata', 'GRP')
+    for fn in os.listdir(grp) if os.path.isdir(grp) else []:
+        if fn.upper().startswith('FONT') and fn.upper().endswith('.IMG'):
+            os.remove(os.path.join(grp, fn))
+
+
 def _getacp_only(src):
     """Fallback when the text fix does not recognise this DC4PHDL.exe build."""
     from ph_textfix import parse_pe

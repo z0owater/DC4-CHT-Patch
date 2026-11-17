@@ -3,9 +3,9 @@
 [![English](https://img.shields.io/badge/English-555555?style=for-the-badge)](README.md)
 [![繁體中文](https://img.shields.io/badge/%E7%B9%81%E9%AB%94%E4%B8%AD%E6%96%87-0969da?style=for-the-badge)](README.zh-TW.md)
 
-一個補丁，***D.C.4 Plus Harmony*** 和 ***D.C.4 Sweet Harmony*** 都能用。把已安裝的 acies 簡體中文漢化轉成繁體中文（台灣用字），同時修正文字顯示問題，並可自訂文字大小。只轉換字形，翻譯內容不變。
+***D.C.4 Plus Harmony*** 和 ***D.C.4 Sweet Harmony*** 共用的啟動器：把 acies 的簡體中文漢化轉成繁體中文（台灣用字），修正文字顯示問題，可自訂文字大小，並直接開始遊戲。只轉換字形，翻譯內容不變。
 
-本專案不含任何遊戲檔案、翻譯文本或字型檔。所有檔案都在你的電腦上，用你自己的遊戲、你安裝的漢化補丁，以及 Windows 內建的微軟正黑體生成。請支持正版：[CIRCUS](https://circus-co.jp/) — [D.C.4 Plus Harmony](https://circus-co.jp/product/dc4ph/) / [D.C.4 Sweet Harmony](https://circus-co.jp/product/dc4sh/)。
+本專案不含任何遊戲檔案、翻譯文本或字型檔。所有檔案都在你的電腦上，用你自己的遊戲、你下載的 acies 漢化，以及 Windows 內建的微軟正黑體生成。請支持正版：[CIRCUS](https://circus-co.jp/) — [D.C.4 Plus Harmony](https://circus-co.jp/product/dc4ph/) / [D.C.4 Sweet Harmony](https://circus-co.jp/product/dc4sh/)。
 
 ## 功能
 
@@ -20,19 +20,18 @@
 
 ## 安裝
 
-1. 安裝遊戲，再照說明安裝 **acies 的簡體中文漢化補丁**（連結見[致謝](#致謝)）。
-2. 到 [Releases](../../releases/latest) 下載 **`DC4_CHT_Patch.exe`**。
-3. **雙擊執行**，選擇遊戲資料夾（有 `DC4PHDL.exe` 或 `DC4_SH.exe` 的那個）。
-4. 按 **Enter** 使用預設文字大小（28），或輸入其他大小。
-5. 完成！照常開啟遊戲即可。
+1. 到 [Releases](../../releases/latest) 下載 **`DC4_CHT_Patch.exe`**。
+2. 下載對應遊戲的 **acies 簡體中文漢化**（免費）：[Plus Harmony](https://2dfan.com/downloads/47006) / [Sweet Harmony](https://2dfan.com/downloads/47045)。只要下載就好，不用自己安裝。
+3. 開啟 **`DC4_CHT_Patch.exe`**，選擇遊戲資料夾（有 `DC4PHDL.exe` 或 `DC4_SH.exe` 的那個）。
+   啟動器會自動在「下載」資料夾找到 acies 漢化；找不到時按 **選擇…**，選 `.zip`，或解壓後資料夾裡的任一檔案。
+4. 選好文字大小，按 **安裝**，約需一分鐘。
+5. 按 **▶ 開始遊戲**。
 
-每款遊戲各執行一次，約需一分鐘。
-
-> **小技巧：** 把 `DC4_CHT_Patch.exe` 放進遊戲資料夾就不用選資料夾；也可以把遊戲資料夾直接拖到 exe 上。
+啟動器會記住遊戲資料夾。每款遊戲各安裝一次即可。
 
 ## 調整文字大小
 
-再執行一次 `DC4_CHT_Patch.exe`，按 **Enter**，輸入新的大小即可，不會重新安裝。
+開啟啟動器，拖動 **文字大小** 滑桿（預覽會顯示實際效果），按 **套用**；或直接按 **開始遊戲**，會先儲存設定。
 
 也可以用記事本編輯遊戲資料夾裡的 `FontHook.ini`，存檔後重開遊戲：
 
@@ -41,30 +40,31 @@
 | Plus Harmony | `EngineFontSize=` 像素大小 | `EngineFontSize=27` |
 | Sweet Harmony | `FontHeightScale1000=` 大小 × 1000 ÷ 26 | `FontHeightScale1000=1077`（= 28 px） |
 
-推薦 25–28。手動修改後，再執行一次補丁，切換語言用的備份也會同步成同樣大小。
+推薦 25–28。手動修改後，再到啟動器設定一次大小，切換語言用的備份也會同步。
 
 ## 切換語言
 
-先關閉遊戲，再執行遊戲資料夾裡的：
+在啟動器選 **繁體中文** 或 **简体中文**，按 **套用**（或 **開始遊戲**）。文字修正和文字大小在兩種語言下都有效。
 
-- `切換繁體中文(CHT).bat` → 繁體中文
-- `切换简体中文(CHS).bat` → 原本的簡體中文
-
-文字修正和文字大小在兩種語言下都有效。
+遊戲資料夾裡也有 `切換繁體中文(CHT).bat` / `切换简体中文(CHS).bat`，不開啟動器也能切換（請先關閉遊戲）。
 
 ## 還原
 
-- **換回簡體中文：** 執行 `切换简体中文(CHS).bat`。原本的漢化檔案保存在 `DC4PH_CHT\SC_backup` 和 `DC4SH_CHT\SC_backup`。
+- **換回簡體中文：** 在啟動器選 **简体中文**。原本的漢化檔案保存在 `DC4PH_CHT\SC_backup` 和 `DC4SH_CHT\SC_backup`。
 - **原本的 `DC4PHDL.exe`**（Plus Harmony）：把 `DC4PH_CHT\DC4PHDL.exe.original` 複製回去覆蓋 `DC4PHDL.exe`。Sweet Harmony 的 `DC4_SH.exe` 完全不會被修改。
-- **清晰視窗：** 右鍵遊戲 exe → 內容 → 相容性 → 變更高 DPI 設定 → 取消勾選「覆寫高 DPI 縮放行為」。
+- **清晰視窗：** 在啟動器取消勾選後按 **套用**。
 
 ## 常見問題
 
 **防毒軟體報毒。** 這是用 PyInstaller 打包的 Python 程式，常被誤判。完整原始碼在 [`src/`](src/)，可以自行檢查，或直接用 Python 執行（見[從原始碼執行](#從原始碼執行)）。
 
-**出現「The Simplified Chinese patch by acies was not found」。** 請先安裝 acies 的簡體中文漢化。如果之前用其他方式轉過繁體，請先重新安裝簡體中文漢化。
+**為什麼啟動器不直接內附 acies 漢化？** 那是 acies 的作品，而且包含遊戲本身的腳本檔，我們不能轉載。啟動器改為從你下載的檔案幫你安裝，一樣方便。
 
-**之前用過 CHT 安裝器 v2.0 或 DC4PH_TextFix。** 直接執行本補丁即可，它取代了這兩個工具，並會沿用已保存的簡體中文備份。
+**下載的 acies 漢化是 `.7z` 或 `.rar`。** 請先解壓（右鍵 → 解壓縮全部，或用 7-Zip），再按 **選擇…**，選解壓後資料夾裡的任一檔案。
+
+**之前用其他方式轉過繁體。** 在啟動器選擇 acies 漢化後按 **安裝**，會先把簡體中文漢化裝回去。
+
+**之前用過 CHT 安裝器 v2.0 或 DC4PH_TextFix。** 開啟啟動器按 **安裝** 即可，它取代了這兩個工具，並會沿用已保存的簡體中文備份。
 
 **系統需求。** Windows 10 或 11（使用內建的微軟正黑體 `msjhbd.ttc` / `msjh.ttc`）。
 
@@ -72,10 +72,11 @@
 
 ```bat
 pip install -r requirements.txt
-python src\dc4_cht_patch.py "C:\遊戲資料夾路徑"
+python src\launcher.py
 ```
 
-參數：`--size N`、`--reinstall`、`--sharp` / `--no-sharp`、`--yes`（全部使用預設值）、`--no-pause`。
+`python src\launcher.py "C:\遊戲資料夾路徑" --install` 可以不用點擊直接安裝。
+也有命令列版本：`python src\dc4_cht_patch.py "C:\遊戲資料夾路徑" --sc-patch "acies 漢化.zip"`（參數：`--size N`、`--reinstall`、`--sharp` / `--no-sharp`、`--yes`、`--no-pause`）。
 `build.bat` 會用 PyInstaller 打包出 `DC4_CHT_Patch.exe`。
 
 <details>

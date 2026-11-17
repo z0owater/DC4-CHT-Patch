@@ -7,8 +7,19 @@ DEFAULT_SIZE = 28          # text size in pixels (both games)
 SIZE_MIN, SIZE_MAX = 16, 31
 
 
+_sink = None      # the launcher sets this to receive progress lines instead of the console
+
+
+def set_output(fn):
+    global _sink
+    _sink = fn
+
+
 def say(*a):
-    print(*a, flush=True)
+    if _sink is not None:
+        _sink(' '.join(str(x) for x in a))
+    else:
+        print(*a, flush=True)
 
 
 def sha16(b):
@@ -141,6 +152,21 @@ def set_sharp_window(exe_path):
         new = merge_flags(old)
         winreg.SetValueEx(k, exe_path, 0, winreg.REG_SZ, new)
     return old, new
+
+
+def clear_sharp_window(exe_path):
+    """Undo set_sharp_window (keeps any other compatibility flags the user set)."""
+    import winreg
+    try:
+        with winreg.OpenKey(winreg.HKEY_CURRENT_USER, LAYERS_KEY, 0, winreg.KEY_READ | winreg.KEY_SET_VALUE) as k:
+            old = winreg.QueryValueEx(k, exe_path)[0]
+            toks = [t for t in old.split() if t != '~' and t.upper() != 'HIGHDPIAWARE']
+            if toks:
+                winreg.SetValueEx(k, exe_path, 0, winreg.REG_SZ, '~ ' + ' '.join(toks))
+            else:
+                winreg.DeleteValue(k, exe_path)
+    except FileNotFoundError:
+        pass
 
 
 def ask(prompt, default=''):

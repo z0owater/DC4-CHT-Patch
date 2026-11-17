@@ -3,9 +3,9 @@
 [![English](https://img.shields.io/badge/English-0969da?style=for-the-badge)](README.md)
 [![繁體中文](https://img.shields.io/badge/%E7%B9%81%E9%AB%94%E4%B8%AD%E6%96%87-555555?style=for-the-badge)](README.zh-TW.md)
 
-One patch for ***D.C.4 Plus Harmony*** and ***D.C.4 Sweet Harmony***. It converts the Simplified Chinese fan translation by acies, once you've installed it, to Traditional Chinese (Taiwan standard). It also fixes the text rendering and lets you choose the text size. Only the characters change; the wording stays the same.
+A launcher for ***D.C.4 Plus Harmony*** and ***D.C.4 Sweet Harmony*** that turns the Simplified Chinese fan translation by acies into Traditional Chinese (Taiwan standard), fixes the text rendering and lets you choose the text size, then starts the game. Only the characters change; the wording stays the same.
 
-This repo contains no game files, translation text or fonts. Everything is generated on your own computer from your copy of the game, the patch you installed, and the Microsoft JhengHei font that comes with Windows. Please buy the games from [CIRCUS](https://circus-co.jp/): [D.C.4 Plus Harmony](https://circus-co.jp/product/dc4ph/) / [D.C.4 Sweet Harmony](https://circus-co.jp/product/dc4sh/).
+This repo contains no game files, translation text or fonts. Everything is generated on your own computer from your copy of the game, the acies patch you download, and the Microsoft JhengHei font that comes with Windows. Please buy the games from [CIRCUS](https://circus-co.jp/): [D.C.4 Plus Harmony](https://circus-co.jp/product/dc4ph/) / [D.C.4 Sweet Harmony](https://circus-co.jp/product/dc4sh/).
 
 ## Features
 
@@ -20,19 +20,18 @@ This repo contains no game files, translation text or fonts. Everything is gener
 
 ## Install
 
-1. Install the game, then install the **Simplified Chinese patch by acies** (see [Credits](#credits)) as its instructions say.
-2. Download **`DC4_CHT_Patch.exe`** from [Releases](../../releases/latest).
-3. **Double-click it** and choose your game folder (the one with `DC4PHDL.exe` or `DC4_SH.exe`).
-4. Press **Enter** for the default text size (28), or type another size.
-5. Done. Start the game as usual.
+1. Download **`DC4_CHT_Patch.exe`** from [Releases](../../releases/latest).
+2. Download the free **Simplified Chinese patch by acies** for your game: [Plus Harmony](https://2dfan.com/downloads/47006) / [Sweet Harmony](https://2dfan.com/downloads/47045). Just download it; you don't need to install it yourself.
+3. Open **`DC4_CHT_Patch.exe`** and choose your game folder (the one with `DC4PHDL.exe` or `DC4_SH.exe`).
+   The launcher finds the acies download in your Downloads folder by itself. If it doesn't, press **Select…** and pick the `.zip`, or any file inside the extracted folder.
+4. Choose the text size and press **Install**. It takes about a minute.
+5. Press **▶ Play**.
 
-Do this once for each game. It takes about a minute.
-
-> **Tip:** if you put `DC4_CHT_Patch.exe` inside the game folder, it skips the folder question. You can also drag the game folder onto the exe.
+The launcher remembers your game folders. Do this once for each game.
 
 ## Change the text size
 
-Run `DC4_CHT_Patch.exe` again, press **Enter**, then type the new size. Nothing is reinstalled.
+Open the launcher, move the **Text size** slider (the preview shows how it will look) and press **Apply**, or just press **Play**, which saves your changes first.
 
 You can also edit `FontHook.ini` in the game folder with Notepad and then restart the game:
 
@@ -41,30 +40,31 @@ You can also edit `FontHook.ini` in the game folder with Notepad and then restar
 | Plus Harmony | `EngineFontSize=` size in pixels | `EngineFontSize=27` |
 | Sweet Harmony | `FontHeightScale1000=` size × 1000 ÷ 26 | `FontHeightScale1000=1077` (= 28 px) |
 
-25–28 is recommended. If you edit the file by hand, run the patch once more so the language-switch copies get the same size.
+25–28 is recommended. If you edit the file by hand, set the size once in the launcher afterwards so the language-switch copies match.
 
 ## Switch language
 
-Close the game, then run one of these in the game folder:
+In the launcher, pick **Traditional 繁體** or **Simplified 简体** and press **Apply** (or **Play**). The text fixes and your text size apply to both.
 
-- `切換繁體中文(CHT).bat` → Traditional Chinese
-- `切换简体中文(CHS).bat` → the original Simplified Chinese
-
-The text fixes and your text size apply to both languages.
+The game folder also has `切換繁體中文(CHT).bat` / `切换简体中文(CHS).bat`, which do the same without the launcher (close the game first).
 
 ## Undo
 
-- **Back to Simplified Chinese:** run `切换简体中文(CHS).bat`. The original patch files are kept in `DC4PH_CHT\SC_backup` and `DC4SH_CHT\SC_backup`.
+- **Back to Simplified Chinese:** choose **Simplified 简体** in the launcher. The original patch files are kept in `DC4PH_CHT\SC_backup` and `DC4SH_CHT\SC_backup`.
 - **Original `DC4PHDL.exe`** (Plus Harmony): copy `DC4PH_CHT\DC4PHDL.exe.original` over `DC4PHDL.exe`. Sweet Harmony's `DC4_SH.exe` is never modified.
-- **Sharp window:** right-click the game exe → Properties → Compatibility → Change high DPI settings → untick "Override high DPI scaling behavior".
+- **Sharp window:** untick it in the launcher and press **Apply**.
 
 ## FAQ
 
 **My antivirus flags the exe.** The exe is a Python program packed with PyInstaller, which antivirus software often flags by mistake. The full source is in [`src/`](src/); you can read it or run it directly (see [Run from source](#run-from-source)).
 
-**"The Simplified Chinese patch by acies was not found".** Install the acies patch first. If you converted the game to Traditional Chinese by some other method, reinstall the Simplified Chinese patch first.
+**Why doesn't the launcher include the acies patch?** It's acies's work and contains the game's own script files, so it isn't ours to redistribute. The launcher installs it from your download instead, which is just as quick.
 
-**I used the older CHT installer v2.0 or DC4PH_TextFix.** Just run this patch; it replaces both. Your saved Simplified Chinese backup is reused.
+**My acies download is a `.7z` or `.rar`.** Extract it first (right-click → Extract All, or 7-Zip), then press **Select…** and pick any file inside the extracted folder.
+
+**I converted the game to Traditional Chinese some other way.** Pick the acies download in the launcher and press **Install**; it puts the Simplified Chinese patch back first.
+
+**I used the older CHT installer v2.0 or DC4PH_TextFix.** Just open the launcher and press **Install**; it replaces both and reuses your saved Simplified Chinese backup.
 
 **Requirements.** Windows 10 or 11 (uses the built-in Microsoft JhengHei font, `msjhbd.ttc` / `msjh.ttc`).
 
@@ -72,10 +72,11 @@ The text fixes and your text size apply to both languages.
 
 ```bat
 pip install -r requirements.txt
-python src\dc4_cht_patch.py "C:\path\to\game folder"
+python src\launcher.py
 ```
 
-Options: `--size N`, `--reinstall`, `--sharp` / `--no-sharp`, `--yes` (accept defaults), `--no-pause`.
+`python src\launcher.py "C:\path\to\game folder" --install` installs without any clicks.
+There's also a command-line version: `python src\dc4_cht_patch.py "C:\path\to\game folder" --sc-patch "acies download.zip"` (options: `--size N`, `--reinstall`, `--sharp` / `--no-sharp`, `--yes`, `--no-pause`).
 `build.bat` builds `DC4_CHT_Patch.exe` with PyInstaller.
 
 <details>
