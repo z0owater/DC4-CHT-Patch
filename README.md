@@ -92,7 +92,6 @@ Options: `--size N`, `--reinstall`, `--sharp` / `--no-sharp`, `--yes` (accept de
   - Plus Harmony: [2DFan](https://2dfan.com/downloads/47006) · [ai2.moe](https://www.ai2.moe/files/file/14897-circusdc4-plus-harmonydeepseek-v41-flash-1017%E7%AB%99%E5%86%85%E5%AD%98%E5%82%A8%E8%A1%A5%E4%B8%81/)
   - Sweet Harmony: [2DFan](https://2dfan.com/downloads/47045) · [ai2.moe](https://www.ai2.moe/files/file/14910-circusdc4-sweet-harmonydeepseek-v41-flash-1017%E7%AB%99%E5%86%85%E5%AD%98%E5%82%A8%E8%A1%A5%E4%B8%81/)
 - **[hyther1111](https://github.com/hyther1111)**: *DC4PH_TextFix*, the Plus Harmony text fix (overlapping half-width letters, clipped descenders, `EngineFontSize` in `FontHook.ini`). hyther1111 also traced the overlap to the earlier +5% text enlargement, which left no room between letters, and suggested making the size a setting in `FontHook.ini`. Both changes are in this version.
-- **[z0owater](https://github.com/z0owater)**: *DC4_CHT_Installer*, the Traditional Chinese converter and fonts for both games. This repo merges it with DC4PH_TextFix.
 - Built with [OpenCC](https://github.com/yichen0831/opencc-python) (opencc-python-reimplemented), [fontTools](https://github.com/fonttools/fonttools) and [PyInstaller](https://pyinstaller.org/).
 
 *D.C.4 Plus Harmony* and *D.C.4 Sweet Harmony* © CIRCUS. This is an unofficial fan project, not affiliated with CIRCUS or with the translators.

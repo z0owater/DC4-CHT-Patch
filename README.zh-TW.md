@@ -92,7 +92,6 @@ python src\dc4_cht_patch.py "C:\遊戲資料夾路徑"
   - Plus Harmony：[2DFan](https://2dfan.com/downloads/47006) · [ai2.moe](https://www.ai2.moe/files/file/14897-circusdc4-plus-harmonydeepseek-v41-flash-1017%E7%AB%99%E5%86%85%E5%AD%98%E5%82%A8%E8%A1%A5%E4%B8%81/)
   - Sweet Harmony：[2DFan](https://2dfan.com/downloads/47045) · [ai2.moe](https://www.ai2.moe/files/file/14910-circusdc4-sweet-harmonydeepseek-v41-flash-1017%E7%AB%99%E5%86%85%E5%AD%98%E5%82%A8%E8%A1%A5%E4%B8%81/)
 - **[hyther1111](https://github.com/hyther1111)**：*DC4PH_TextFix*，Plus Harmony 的文字修正（半形字重疊、下緣被切、`FontHook.ini` 的 `EngineFontSize`）。也是他發現英文重疊源自之前「文字放大 5%」卻沒有留出字距，並建議把文字大小做成 `FontHook.ini` 的設定。這兩點都已納入本版本。
-- **[z0owater](https://github.com/z0owater)**：*DC4_CHT_Installer*，兩款遊戲的繁體轉換與字型。本專案由它和 DC4PH_TextFix 合併而成。
 - 使用 [OpenCC](https://github.com/yichen0831/opencc-python)（opencc-python-reimplemented）、[fontTools](https://github.com/fonttools/fonttools) 與 [PyInstaller](https://pyinstaller.org/)。
 
 *D.C.4 Plus Harmony* 與 *D.C.4 Sweet Harmony* © CIRCUS。本專案為非官方同人工具，與 CIRCUS 及漢化者無關。
